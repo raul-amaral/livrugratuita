@@ -13656,6 +13656,13 @@ a:focus {
   position: relative;
   z-index: 10;
 }
+.page-banner2 .banner-header2 {
+  display: block;
+  padding-top: 240px;
+  vertical-align: middle;
+  position: relative;
+  z-index: 10;
+}
 @media (max-width: 767px) {
   .page-banner .banner-header {
     padding-top: 90px;
