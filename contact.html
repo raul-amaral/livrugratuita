@@ -388,7 +388,7 @@
                                                             <span class="underline left"></span>
                                                             <div class="contact-fields">
                                                                 
-                                                                <div class="alert alert-success alert-dismissible hidden" role="alert">
+                                                                <div class="alert alert-success alert-dismissible hidden hau-alert" role="alert">
                                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                                        <span aria-hidden="true">&times;</span>
                                                                     </button>
@@ -428,20 +428,20 @@
                                                                             <div class="form-group form-submit">
                                                                                 <button class="btn btn-primary btn-manda" type="submit">Manda Mensajem</button>
                                                                                 
-                                                                                <button class="btn btn-primary btn-loading hidden" type="button" hide disabled>
+                                                                                <button class="btn btn-primary btn-loading hidden" type="button" disabled>
                                                                                 <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                                                                         Loading...
                                                                                 </button>
                                                                                 
                                                                              </div>
                                                                         </div>
-                                                                        <div id="success">
+<!--                                                                         <div id="success">
                                                                             <span>Ita nia Mensajen haruka susessu ona! Ami nia Ekipa sei kontaktu ita!.</span>
                                                                         </div>
 
                                                                         <div id="error">
                                                                             <span>Buat ruma lalos, koko refresh no submete fila fali.</span>
-                                                                        </div>
+                                                                        </div> -->
                                                                     </div>
                                                                 </form> 
                                                             </div>                                                                   
@@ -706,12 +706,28 @@
         <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxEVDtdJfy_hAJruseFWyCF0AQC5diG3RwZVPgRWoO5asYo9e017A8v9kdrDj3FbV07/exec'
         const form = document.forms['livru-gratuita-contact-form']
+        const btnManda = document.querySelector('.btn-manda');
+        const btnLoading = document.querySelector('.btn-loading');
+        const Haualert = document.querySelector('.hau-alert');
 
         form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => console.log('Success!', response))
-            .catch(error => console.error('Error!', error.message))
+            e.preventDefault();
+            // bainhira butaun submit klik ona
+            // hamosu butaun loading, halakon butaun manda
+            btnLoading.classList.toggle('hidden');
+            btnManda.classList.toggle('hidden');
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    // hamosu butaun manda, halakon butaun loading
+                    btnLoading.classList.toggle('hidden');
+                    btnManda.classList.toggle('hidden');
+                    // hamosu alert
+                    Haualert.classList.toggle('hidden');
+                    // reset form
+                    form.reset();
+                    console.log('Success!', response);
+                })
+                .catch(error => console.error('Error!', error.message));
         })
         </script>
 
