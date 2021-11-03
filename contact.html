@@ -385,37 +385,38 @@
                                                             <h2>Haruka Mensajen mai Ami</h2>
                                                             <span class="underline left"></span>
                                                             <div class="contact-fields">
-                                                                <form id="contact" name="contact" action="http://libraria.demo.presstigers.com/contact.html" method="post" >
+                                                                <form id="contact" name="livru-gratuita-contact-form">
                                                                     <div class="row">
                                                                         <div class="col-md-6 col-sm-6">
                                                                             <div class="form-group">
-                                                                                <input class="form-control" type="text" placeholder="First Name" name="first-name" id="first-name" size="30" value="" aria-required="true" />
+                                                                                <input class="form-control" type="text" placeholder="Naran Primeiru" name="first_name" id="first_name" size="30" value="" aria-required="true" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 col-sm-6">
                                                                             <div class="form-group">
-                                                                                <input class="form-control" type="text" placeholder="Last Name" name="last-name" id="last-name" size="30" value="" aria-required="true" />
+                                                                                <input class="form-control" type="text" placeholder="Apelidu" name="last_name" id="last_name" size="30" value="" aria-required="true" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 col-sm-6">
                                                                             <div class="form-group">
-                                                                                <input class="form-control" type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email" name="email" id="email" size="30" value="" aria-required="true" />
+<!--                                                                                 <input class="form-control" type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email" name="email" id="email" size="30" value="" aria-required="true" /> -->
+                                                                                <input class="form-control" type="email" placeholder="Email" name="email" id="email" size="30" value="" aria-required="true" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 col-sm-6">
                                                                             <div class="form-group">
-                                                                                <input class="form-control" type="text" placeholder="Phone Number" name="phone" id="phone" size="30" value="" aria-required="true" />
+                                                                                <input class="form-control" type="text" placeholder="Numeru Telefone" name="phone" id="phone" size="30" value="" aria-required="true" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-sm-12">
                                                                             <div class="form-group">
-                                                                                <textarea class="form-control" placeholder="Your message" id="message" aria-required="true"></textarea>
+                                                                                <textarea class="form-control" placeholder="Ita nia mensajem" id="message" aria-required="true" name="mensajem"></textarea>
                                                                                 <div class="clearfix"></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-sm-12">
                                                                             <div class="form-group form-submit">
-                                                                                <input class="btn btn-default" id="submit-contact-form" type="button" name="submit" value="Send Message"  />
+                                                                                <button class="btn btn-default" type="submit">Manda Mensajem</button>
                                                                             </div>
                                                                         </div>
                                                                         <div id="success">
@@ -685,6 +686,18 @@
 
         <!-- Custom Scripts -->
         <script type="text/javascript" src="js/main.js"></script>
+       
+        <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxEVDtdJfy_hAJruseFWyCF0AQC5diG3RwZVPgRWoO5asYo9e017A8v9kdrDj3FbV07/exec'
+        const form = document.forms['livru-gratuita-contact-form']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
+        </script>
 
     </body>
 
